@@ -1,0 +1,20 @@
+<?php
+$defaultdata = array("showpassword" => "yes", "bgcolor" => "#ffffff");
+
+function xor_encrypt($in)
+{
+    // 取出script1.php輸出循環的部分
+    $key = 'eDWo';
+    $text = $in;
+    $outText = '';
+
+    // Iterate through each character
+    for ($i = 0; $i < strlen($text); $i++) {
+        $outText .= $text[$i] ^ $key[$i % strlen($key)];
+    }
+
+    return $outText;
+}
+print base64_encode(xor_encrypt(json_encode($defaultdata)));
+
+?>
